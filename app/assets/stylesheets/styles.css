@@ -15,6 +15,13 @@
       width: 1000px;
       margin: 0 auto;
     }
+    .instructions{
+      background-color: #FFE5B4;
+      border: 2px solid orange;
+      display: inline-block;
+      padding: 5px 10px 5px 10px;
+      line-height: 20px;
+    }
     #game{
       background: white;
     }
