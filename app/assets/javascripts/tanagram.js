@@ -198,7 +198,7 @@ Pieces.prototype.set_small_triangle_2 = function (startX, startY, rotation, colo
 	this.small_triangle_2.graphics.clear().f(color).mt(6 * scale, 6 * scale).lt(8 * scale, 8 * scale).lt(4 * scale, 8 * scale).lt(6 * scale, 6 * scale);
 	this.small_triangle_2.x = startX;
 	this.small_triangle_2.y = startY;
-	if (rotation < 0 || rotation > 90)rotation = 0;
+	if (rotation < 0 || rotation > 360)rotation = 0;
 	this.small_triangle_2.rotation = rotation;
 }
 
@@ -210,30 +210,13 @@ Pieces.prototype.set_square = function (startX, startY, rotation, color){
 	this.square.graphics.clear().f(color).mt(4 * scale, 4 * scale).lt(6 * scale, 6 * scale).lt(4 * scale, 8 * scale).lt(2 * scale, 6 * scale).lt(4 * scale, 4 * scale);
 	this.square.x = startX;
 	this.square.y = startY;
-	if (rotation < 0 || rotation > 360)rotation = 0;
+	if (rotation < 0 || rotation > 90)rotation = 0;
 	this.square.rotation = rotation;
 }
 
 Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
-
-var defaultX, defaultY, scale;
-defaultX = defaultY = 130;
-scale = 30;
-var stage = new createjs.Stage("canvas");
-var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);
-
-puzzle.set_large_triangle_1(750, 190, 180, "black");
-puzzle.set_large_triangle_2(810, 250, 270, "black");
-puzzle.set_parallelogram(660, 220, 0, "black");
-puzzle.set_medium_triangle(660, 340, 0, "black");
-puzzle.set_small_triangle_1(720, 250, 90, "black");
-puzzle.set_small_triangle_2(810, 340, 0, "black");
-puzzle.set_square(750, 310, 0, "black");
-
-createjs.Ticker.addEventListener("tick", tick);
 
 function tick(event){
 	stage.update();
