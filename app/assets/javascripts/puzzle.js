@@ -7,8 +7,7 @@ function FetchPuzzle(attempted_puzzles){
     type: "get",
     // data: params,
     success: function(data){
-      console.log(data);
-      v = data;
+      puzzle.current_puzzle = data;
     }
   })
 }

@@ -218,33 +218,6 @@ Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
 
-var defaultX, defaultY, scale;
-defaultX = defaultY = 130;
-scale = 30;
-var stage = new createjs.Stage("canvas");
-var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);
-
-//Cat
-puzzle.set_large_triangle_1	(755, 426, 135, "black");
-puzzle.set_large_triangle_2	(738, 299, 90 , "black");
-puzzle.set_parallelogram	(887, 439, 90 , "black");
-puzzle.set_medium_triangle	(636, 264, 45 , "black");
-puzzle.set_small_triangle_1	(615, 95 , 90 , "black");
-puzzle.set_small_triangle_2	(674, 95 , 270, "black");
-puzzle.set_square			(644, 154, 0  , "black");
-
-//Dog
-puzzle.set_large_triangle_1	(697, 243, 180, "black");
-puzzle.set_large_triangle_2	(570, 260, 225, "black");
-puzzle.set_parallelogram	(817, 345, 135, "black");
-puzzle.set_medium_triangle	(786, 273, 270, "black");
-puzzle.set_small_triangle_1	(817, 98 , 0  , "black");
-puzzle.set_small_triangle_2	(498, 326, 270, "black");
-puzzle.set_square			(875, 186, 0  , "black");
-
-createjs.Ticker.addEventListener("tick", tick);
-
 function tick(event){
 	stage.update();
 }			
