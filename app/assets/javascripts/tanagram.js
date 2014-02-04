@@ -218,6 +218,50 @@ Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
 
+function setPuzzle(puzzle, data){
+	puzzle.set_large_triangle_1(
+	data.puzzle.large_triangle_1.x,
+	data.puzzle.large_triangle_1.y,
+	data.puzzle.large_triangle_1.r,
+	data.puzzle.large_triangle_1.color);
+
+	puzzle.set_large_triangle_2(
+	data.puzzle.large_triangle_2.x,
+	data.puzzle.large_triangle_2.y,
+	data.puzzle.large_triangle_2.r,
+	data.puzzle.large_triangle_2.color);
+
+	puzzle.set_parallelogram(
+	data.puzzle.parallelogram.x,
+	data.puzzle.parallelogram.y,
+	data.puzzle.parallelogram.r,
+	data.puzzle.parallelogram.color);
+
+	puzzle.set_medium_triangle(
+	data.puzzle.medium_triangle.x,
+	data.puzzle.medium_triangle.y,
+	data.puzzle.medium_triangle.r,
+	data.puzzle.medium_triangle.color);
+
+	puzzle.set_small_triangle_1(
+	data.puzzle.small_triangle_1.x,
+	data.puzzle.small_triangle_1.y,
+	data.puzzle.small_triangle_1.r,
+	data.puzzle.small_triangle_1.color);
+
+	puzzle.set_small_triangle_2(
+	data.puzzle.small_triangle_2.x,
+	data.puzzle.small_triangle_2.y,
+	data.puzzle.small_triangle_2.r,
+	data.puzzle.small_triangle_2.color);
+
+	puzzle.set_square(
+	data.puzzle.square.x,
+	data.puzzle.square.y,
+	data.puzzle.square.r,
+	data.puzzle.square.color);
+}
+
 function tick(event){
 	stage.update();
-}			
+}
