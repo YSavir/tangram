@@ -14,23 +14,23 @@ function Pieces (stage, scale, defaultX, defaultY, enableListen){
 	this.large_triangle_2.rotation = 270;
 
 	this.parallelogram = new createjs.Shape();
-	this.parallelogram.graphics.f("purple").mt(0,0).lt(2 * scale, 2 * scale).lt(2 * scale,6 * scale).lt(0,4* scale).lt(0,0);
+	this.parallelogram.graphics.f("#36175E").mt(0,0).lt(2 * scale, 2 * scale).lt(2 * scale,6 * scale).lt(0,4* scale).lt(0,0);
 	this.parallelogram.x = (1 * scale) + defaultX; this.parallelogram.regX = 1 * scale;
 	this.parallelogram.y = (3 * scale) + defaultY; this.parallelogram.regY = 3 * scale;
 
 	this.medium_triangle = new createjs.Shape();//"North == 135"
-	this.medium_triangle.graphics.f("blue").mt(0,4 * scale).lt(4 * scale,8 * scale).lt(0,8 * scale).lt(0,4 * scale);
+	this.medium_triangle.graphics.f("#1510F0").mt(0,4 * scale).lt(4 * scale,8 * scale).lt(0,8 * scale).lt(0,4 * scale);
 	this.medium_triangle.x = (1 * scale) + defaultX; this.medium_triangle.regX = 1 * scale;
 	this.medium_triangle.y = (7 * scale) + defaultY; this.medium_triangle.regY = 7 * scale;
 
 	this.small_triangle_1 = new createjs.Shape();
-	this.small_triangle_1.graphics.f("orange").mt(6 * scale,6 * scale).lt(8 * scale,8 * scale).lt(4 * scale,8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_1.graphics.f("#FF8A00").mt(6 * scale,6 * scale).lt(8 * scale,8 * scale).lt(4 * scale,8 * scale).lt(6 * scale, 6 * scale);
 	this.small_triangle_1.x = (3 * scale) + defaultX; this.small_triangle_1.regX = 6 * scale;
 	this.small_triangle_1.y = (4 * scale) + defaultY; this.small_triangle_1.regY = 7 * scale;
 	this.small_triangle_1.rotation = 90;
 
 	this.small_triangle_2 = new createjs.Shape();
-	this.small_triangle_2.graphics.f("green").mt(6 * scale, 6 * scale).lt(8 * scale, 8 * scale).lt(4 * scale, 8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_2.graphics.f("#056134").mt(6 * scale, 6 * scale).lt(8 * scale, 8 * scale).lt(4 * scale, 8 * scale).lt(6 * scale, 6 * scale);
 	this.small_triangle_2.x = (6 * scale) + defaultX; this.small_triangle_2.regX = 6 * scale;
 	this.small_triangle_2.y = (7 * scale) + defaultY; this.small_triangle_2.regY = 7 * scale;
 

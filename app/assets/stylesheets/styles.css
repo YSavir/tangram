@@ -3,10 +3,13 @@ body {
 }
 
 #game{
-  width: 1000px;
-  margin: 0 auto;
   background: #eeeeee;
   border-radius: 10px;
+  margin-bottom:15px;
+}
+.game-container{
+  width: 1000px;
+  margin: 0 auto;
 }
 a{
   text-decoration: none;
