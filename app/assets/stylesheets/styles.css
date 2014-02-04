@@ -1,48 +1,29 @@
-    body{
-      background-color:whitesmoke;
-      font-family: 'Roboto Condensed', sans-serif;
-    }
-    header{
-      background-color: #1A1A1A;
-      font-size: x-large;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    header, header a{
-      color: whitesmoke;
-    }
-    a{
-      text-decoration: none;
-    }
-    .container{
-      width: 1000px;
-      margin: 0 auto;
-    }
-    .instructions{
-      position: absolute;
-      background-color: #FFE5B4;
-      border: 2px solid orange;
-      border-radius: 10px;
-      display: inline-block;
-      padding: 5px 10px 5px 10px;
-      line-height: 20px;
-      float:left;
-      margin: 0;
-    }
-    .windowCloser {
-      border-radius: 5px;
-      background-color: orange;
-      float:right;
-      width:18px;
-      height:18px;
-      text-align: center;
-    }
-    .no-selection {
-      -webkit-user-select: none; /* webkit (safari, chrome) browsers */
-      -moz-user-select: none; /* mozilla browsers */
-      -khtml-user-select: none; /* webkit (konqueror) browsers */
-      -ms-user-select: none; /* IE10+ */
-    }
-    #game{
-      background: white;
-    }
+body{
+  background-color:whitesmoke;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+header{
+  background-color: #1A1A1A;
+  font-size: x-large;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+header, header a{
+  color: whitesmoke;
+}
+.container{
+  width: 1000px;
+  margin: 0 auto;
+}
+#game{
+  background: white;
+}
+a{
+  text-decoration: none;
+}
+.no-selection {
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
+}
