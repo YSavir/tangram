@@ -11,6 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20140204004426) do
+
+  create_table "puzzles", :force => true do |t|
+    t.string   "name"
+    t.string   "large_triangle_1"
+    t.string   "large_triangle_2"
+    t.string   "parallelogram"
+    t.string   "medium_triangle"
+    t.string   "small_triangle_1"
+    t.string   "small_triangle_2"
+    t.string   "square"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
 end
