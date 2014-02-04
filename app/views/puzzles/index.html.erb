@@ -1,4 +1,4 @@
-<div id="game" class="container">
+<div id="game">
   <canvas id="canvas" width="1000" height="500"></canvas>
 </div>
 
@@ -8,7 +8,7 @@ defaultX = defaultY = 130;
 scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);
+var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);
 
 // //Cat
 // puzzle.set_large_triangle_1	(755, 426, 135, "black");
@@ -28,7 +28,14 @@ var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);
 // puzzle.set_small_triangle_2	(498, 326, 270, "black");
 // puzzle.set_square			(875, 186, 0  , "black");
 
-
-
 createjs.Ticker.addEventListener("tick", tick);
+
+$.ajax({
+	url: "/",
+	dataType: "json",
+	type: "get",
+	success: function(data){
+		setPuzzle(puzzle, data);
+	}
+})
 </script>

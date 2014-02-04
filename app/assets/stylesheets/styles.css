@@ -1,22 +1,12 @@
-body{
-  background-color:whitesmoke;
-  font-family: 'Roboto Condensed', sans-serif;
+body { 
+  padding-top: 70px; 
 }
-header{
-  background-color: #1A1A1A;
-  font-size: x-large;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-header, header a{
-  color: whitesmoke;
-}
-.container{
+
+#game{
   width: 1000px;
   margin: 0 auto;
-}
-#game{
-  background: white;
+  background: #eeeeee;
+  border-radius: 10px;
 }
 a{
   text-decoration: none;
