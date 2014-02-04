@@ -2,6 +2,52 @@
   <canvas id="canvas" width="1000" height="500"></canvas>
 </div>
 
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Instructions
+    </button>
+
+    <!-- ********** modal popup ********** -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Gameplay & History</h4>
+          </div>
+
+          <div class="modal-body">
+
+            <p>
+              The objective is to cover the silhouette with the colored shapes. Begin by dragging a colored shape on the left to the silhouette on the right. Shapes will not overlap.
+            </p>
+
+            <p>
+              Click a shape to drag. Double click to rotate.
+            </p>
+
+            <hr>
+
+            <p>
+              The <a href="http://en.wikipedia.org/wiki/Tangram" target="_blank">tangram</a> (Chinese: 七巧板; pinyin: qī qiǎo bǎn; literally "seven boards of skill") is a dissection puzzle consisting of seven flat shapes, called tans, which are put together to form shapes. The objective of the puzzle is to form a specific shape (given only an outline or silhouette) using all seven pieces, which may not overlap. It is reputed to have been invented in China during the Song Dynasty, and then carried over to Europe by trading ships in the early 19th century. It became very popular in Europe for a time then, and then again during World War I. It is one of the most popular dissection puzzles in the world. A Chinese psychologist has termed the tangram "the earliest psychological test in the world", albeit one made for entertainment rather than analysis.
+            </p>
+
+            <p>
+              <img src="assets/tanagram.jpg" alt="tanagram" width="560px ">
+            </p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
 <script>
 var defaultX, defaultY, scale;
 defaultX = defaultY = 130;
