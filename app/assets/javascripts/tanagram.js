@@ -218,50 +218,204 @@ Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
 
+Pieces.prototype.reset = function(){
+	this.large_triangle_1.graphics.clear().f("red").mt(0, 4 * scale).lt(4 * scale, 0).lt(8 * scale,4 * scale).lt(0,4 * scale);
+	this.large_triangle_1.x = (4 * scale) + defaultX;
+	this.large_triangle_1.y = (2 * scale) + defaultY;
+	this.large_triangle_1.rotation = 180;  
+
+	this.large_triangle_2.graphics.clear().f("yellow").mt(0,4 * scale).lt(4 * scale,0).lt(8 * scale, 4 * scale).lt(0, 4 * scale);
+	this.large_triangle_2.x = (6 * scale) + defaultX;
+	this.large_triangle_2.y = (4 * scale) + defaultY;
+	this.large_triangle_2.rotation = 270;
+
+	this.parallelogram.graphics.clear().f("#36175E").mt(0,0).lt(2 * scale, 2 * scale).lt(2 * scale,6 * scale).lt(0,4* scale).lt(0,0);
+	this.parallelogram.x = (1 * scale) + defaultX;
+	this.parallelogram.y = (3 * scale) + defaultY; 
+	this.parallelogram.rotation = 0;
+
+	this.medium_triangle.graphics.clear().f("#1510F0").mt(0,4 * scale).lt(4 * scale,8 * scale).lt(0,8 * scale).lt(0,4 * scale);
+	this.medium_triangle.x = (1 * scale) + defaultX; 
+	this.medium_triangle.y = (7 * scale) + defaultY;
+	this.medium_triangle.rotation = 0;
+
+	this.small_triangle_1.graphics.clear().f("#FF8A00").mt(6 * scale,6 * scale).lt(8 * scale,8 * scale).lt(4 * scale,8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_1.x = (3 * scale) + defaultX; 
+	this.small_triangle_1.y = (4 * scale) + defaultY;
+	this.small_triangle_1.rotation = 90;
+
+	this.small_triangle_2.graphics.clear().f("#056134").mt(6 * scale, 6 * scale).lt(8 * scale, 8 * scale).lt(4 * scale, 8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_2.x = (6 * scale) + defaultX;
+	this.small_triangle_2.y = (7 * scale) + defaultY; 
+	this.small_triangle_2.rotation = 0;
+
+	this.square.graphics.clear().f("lime").mt(4 * scale, 4 * scale).lt(6 * scale, 6 * scale).lt(4 * scale, 8 * scale).lt(2 * scale, 6 * scale).lt(4 * scale, 4 * scale);
+	this.square.x = (4 * scale) + defaultX; 
+	this.square.y = (6 * scale) + defaultY;
+	this.square.rotation = 0;
+}
+
 function setPuzzle(puzzle, data){
 	puzzle.set_large_triangle_1(
-	data.puzzle.large_triangle_1.x,
-	data.puzzle.large_triangle_1.y,
-	data.puzzle.large_triangle_1.r,
-	data.puzzle.large_triangle_1.color);
+		data.puzzle.large_triangle_1.x,
+		data.puzzle.large_triangle_1.y,
+		data.puzzle.large_triangle_1.r,
+		data.puzzle.large_triangle_1.color);
 
 	puzzle.set_large_triangle_2(
-	data.puzzle.large_triangle_2.x,
-	data.puzzle.large_triangle_2.y,
-	data.puzzle.large_triangle_2.r,
-	data.puzzle.large_triangle_2.color);
+		data.puzzle.large_triangle_2.x,
+		data.puzzle.large_triangle_2.y,
+		data.puzzle.large_triangle_2.r,
+		data.puzzle.large_triangle_2.color);
 
 	puzzle.set_parallelogram(
-	data.puzzle.parallelogram.x,
-	data.puzzle.parallelogram.y,
-	data.puzzle.parallelogram.r,
-	data.puzzle.parallelogram.color);
+		data.puzzle.parallelogram.x,
+		data.puzzle.parallelogram.y,
+		data.puzzle.parallelogram.r,
+		data.puzzle.parallelogram.color);
 
 	puzzle.set_medium_triangle(
-	data.puzzle.medium_triangle.x,
-	data.puzzle.medium_triangle.y,
-	data.puzzle.medium_triangle.r,
-	data.puzzle.medium_triangle.color);
+		data.puzzle.medium_triangle.x,
+		data.puzzle.medium_triangle.y,
+		data.puzzle.medium_triangle.r,
+		data.puzzle.medium_triangle.color);
 
 	puzzle.set_small_triangle_1(
-	data.puzzle.small_triangle_1.x,
-	data.puzzle.small_triangle_1.y,
-	data.puzzle.small_triangle_1.r,
-	data.puzzle.small_triangle_1.color);
+		data.puzzle.small_triangle_1.x,
+		data.puzzle.small_triangle_1.y,
+		data.puzzle.small_triangle_1.r,
+		data.puzzle.small_triangle_1.color);
 
 	puzzle.set_small_triangle_2(
-	data.puzzle.small_triangle_2.x,
-	data.puzzle.small_triangle_2.y,
-	data.puzzle.small_triangle_2.r,
-	data.puzzle.small_triangle_2.color);
+		data.puzzle.small_triangle_2.x,
+		data.puzzle.small_triangle_2.y,
+		data.puzzle.small_triangle_2.r,
+		data.puzzle.small_triangle_2.color);
 
 	puzzle.set_square(
-	data.puzzle.square.x,
-	data.puzzle.square.y,
-	data.puzzle.square.r,
-	data.puzzle.square.color);
+		data.puzzle.square.x,
+		data.puzzle.square.y,
+		data.puzzle.square.r,
+		data.puzzle.square.color);
 }
 
 function tick(event){
 	stage.update();
+}
+
+function Game(pieces, puzzle){
+	$("#reset").on("click", function(){
+		pieces.reset();
+	});
+
+	$("#next").on("click", function(){
+		next();
+	})
+
+	stage.on("stagemouseup", function(evt) {
+		if (
+			//Large Triangle 1 Check
+			(check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r)
+		||
+			check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r))
+		&&	//Large Triangle 2 Check
+			(check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r)
+		||
+			check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r))
+		&&	//Small Triangle 1 Check
+			(check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r)
+		||
+			check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r))
+		&&	//Small Triangle 2 Check
+			(check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r)
+		||
+			check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r))
+		&&	//Parallelogram Check
+			(check_piece(pieces.get_parallelogram().x, 
+			pieces.get_parallelogram().y, 
+			pieces.get_parallelogram().r,
+			puzzle.get_parallelogram().x,
+			puzzle.get_parallelogram().y,
+			puzzle.get_parallelogram().r))
+		&&	//Square Check
+			(check_piece(pieces.get_square().x, 
+			pieces.get_square().y, 
+			pieces.get_square().r,
+			puzzle.get_square().x,
+			puzzle.get_square().y,
+			puzzle.get_square().r))
+		&&	//Medium Triangle Check
+			(check_piece(pieces.get_medium_triangle().x, 
+			pieces.get_medium_triangle().y, 
+			pieces.get_medium_triangle().r,
+			puzzle.get_medium_triangle().x,
+			puzzle.get_medium_triangle().y,
+			puzzle.get_medium_triangle().r))
+		)
+		{
+			//User won games
+			console.log("Game Over");	
+		}
+	});
+}
+
+function check_piece(x1, y1, r1, x2, y2, r2){
+	if(Math.abs(x1 - x2) < 12 && Math.abs(y1 - y2) < 12 && r1 == r2){
+		return true;
+	}
+	return false;
+}
+function get_puzzle(){
+	$.ajax({
+		url: "/puzzles.json",
+		dataType: "json",
+		type: "get",
+		success: function(data){
+			setPuzzle(puzzle, data);
+		}
+	});
+}
+function next(){
+	get_puzzle();
+	pieces.reset();
 }

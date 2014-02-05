@@ -2,9 +2,11 @@
   <canvas id="canvas" width="1000" height="500"></canvas>
 </div>
 
-<div class="game-container">
+<div class="game-container no-selection">
 
-<button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">Instructions</button>
+<button class="btn btn-default btn-lg no-selection" data-toggle="modal" data-target="#myModal">Instructions</button>
+<button class="btn btn-default btn-lg no-selection" id="reset">Reset</button>
+<button class="btn btn-default btn-lg no-selection" id="next">Next</button>
 
 </div>
 
@@ -42,7 +44,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default no-selection" data-dismiss="modal">Close</button>
           </div>
 
         </div>
@@ -51,38 +53,13 @@
 
 <script>
 var defaultX, defaultY, scale;
-defaultX = defaultY = 130;
-scale = 30;
+defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);
-
-// //Cat
-// puzzle.set_large_triangle_1	(755, 426, 135, "black");
-// puzzle.set_large_triangle_2	(738, 299, 90 , "black");
-// puzzle.set_parallelogram	(887, 439, 90 , "black");
-// puzzle.set_medium_triangle	(636, 264, 45 , "black");
-// puzzle.set_small_triangle_1	(615, 95 , 90 , "black");
-// puzzle.set_small_triangle_2	(674, 95 , 270, "black");
-// puzzle.set_square			(644, 154, 0  , "black");
-
-// //Dog
-// puzzle.set_large_triangle_1	(697, 243, 180, "black");
-// puzzle.set_large_triangle_2	(570, 260, 225, "black");
-// puzzle.set_parallelogram	(817, 345, 135, "black");
-// puzzle.set_medium_triangle	(786, 273, 270, "black");
-// puzzle.set_small_triangle_1	(817, 98 , 0  , "black");
-// puzzle.set_small_triangle_2	(498, 326, 270, "black");
-// puzzle.set_square			(875, 186, 0  , "black");
+var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);
+get_puzzle();
+var game = new Game(pieces, puzzle);
 
 createjs.Ticker.addEventListener("tick", tick);
 
-$.ajax({
-	url: "/",
-	dataType: "json",
-	type: "get",
-	success: function(data){
-		setPuzzle(puzzle, data);
-	}
-})
 </script>
