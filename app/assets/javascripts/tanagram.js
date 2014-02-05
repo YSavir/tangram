@@ -218,6 +218,43 @@ Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
 
+Pieces.prototype.reset_pieces = function(puzzle){
+	this.large_triangle_1.graphics.clear().f("red").mt(0, 4 * scale).lt(4 * scale, 0).lt(8 * scale,4 * scale).lt(0,4 * scale);
+	this.large_triangle_1.x = (4 * scale) + defaultX;
+	this.large_triangle_1.y = (2 * scale) + defaultY;
+	this.large_triangle_1.rotation = 180;  
+
+	this.large_triangle_2.graphics.clear().f("yellow").mt(0,4 * scale).lt(4 * scale,0).lt(8 * scale, 4 * scale).lt(0, 4 * scale);
+	this.large_triangle_2.x = (6 * scale) + defaultX;
+	this.large_triangle_2.y = (4 * scale) + defaultY;
+	this.large_triangle_2.rotation = 270;
+
+	this.parallelogram.graphics.clear().f("#36175E").mt(0,0).lt(2 * scale, 2 * scale).lt(2 * scale,6 * scale).lt(0,4* scale).lt(0,0);
+	this.parallelogram.x = (1 * scale) + defaultX;
+	this.parallelogram.y = (3 * scale) + defaultY; 
+	this.parallelogram.rotation = 0;
+
+	this.medium_triangle.graphics.clear().f("#1510F0").mt(0,4 * scale).lt(4 * scale,8 * scale).lt(0,8 * scale).lt(0,4 * scale);
+	this.medium_triangle.x = (1 * scale) + defaultX; 
+	this.medium_triangle.y = (7 * scale) + defaultY;
+	this.medium_triangle.rotation = 0;
+
+	this.small_triangle_1.graphics.clear().f("#FF8A00").mt(6 * scale,6 * scale).lt(8 * scale,8 * scale).lt(4 * scale,8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_1.x = (3 * scale) + defaultX; 
+	this.small_triangle_1.y = (4 * scale) + defaultY;
+	this.small_triangle_1.rotation = 90;
+
+	this.small_triangle_2.graphics.clear().f("#056134").mt(6 * scale, 6 * scale).lt(8 * scale, 8 * scale).lt(4 * scale, 8 * scale).lt(6 * scale, 6 * scale);
+	this.small_triangle_2.x = (6 * scale) + defaultX;
+	this.small_triangle_2.y = (7 * scale) + defaultY; 
+	this.small_triangle_2.rotation = 0;
+
+	this.square.graphics.clear().f("lime").mt(4 * scale, 4 * scale).lt(6 * scale, 6 * scale).lt(4 * scale, 8 * scale).lt(2 * scale, 6 * scale).lt(4 * scale, 4 * scale);
+	this.square.x = (4 * scale) + defaultX; 
+	this.square.y = (6 * scale) + defaultY;
+	this.square.rotation = 0;
+}
+
 function setPuzzle(puzzle, data){
 	puzzle.set_large_triangle_1(
 		data.puzzle.large_triangle_1.x,
@@ -267,7 +304,6 @@ function tick(event){
 }
 
 function Game(pieces, puzzle){
-	var game_over = false;
 	stage.on("stagemouseup", function(evt) {
 		if (
 			//Large Triangle 1 Check
@@ -349,7 +385,8 @@ function Game(pieces, puzzle){
 			puzzle.get_medium_triangle().r))
 		)
 		{
-			game_over = true;
+			get_puzzle();
+			pieces.reset_pieces();
 			console.log("Game Over")
 		}
 	});
@@ -360,4 +397,14 @@ function check_piece(x1, y1, r1, x2, y2, r2){
 		return true;
 	}
 	return false;
+}
+function get_puzzle(){
+	$.ajax({
+		url: "/puzzles.json",
+		dataType: "json",
+		type: "get",
+		success: function(data){
+			setPuzzle(puzzle, data);
+		}
+	});
 }

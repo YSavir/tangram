@@ -55,7 +55,9 @@ defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
 var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);
+get_puzzle();
 var game = new Game(pieces, puzzle);
+
 
 // //Cat
 // puzzle.set_large_triangle_1	(755, 426, 135, "black");
@@ -77,12 +79,5 @@ var game = new Game(pieces, puzzle);
 
 createjs.Ticker.addEventListener("tick", tick);
 
-$.ajax({
-	url: "/puzzles.json",
-	dataType: "json",
-	type: "get",
-	success: function(data){
-		setPuzzle(puzzle, data);
-	}
-})
+
 </script>
