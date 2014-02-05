@@ -10,4 +10,8 @@ class PuzzlesController < ApplicationController
     end
   end
 
+  def save
+    puts JSON.parse(params.class)
+  end
+
 end

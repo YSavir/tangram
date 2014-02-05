@@ -118,6 +118,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   jquery-rails
+  json
   pg
   rails (= 3.2.16)
   sass-rails (~> 3.2.3)

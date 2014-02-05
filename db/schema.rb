@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140205004420) do
+ActiveRecord::Schema.define(:version => 20140205010523) do
 
   create_table "puzzles", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,20 @@ ActiveRecord::Schema.define(:version => 20140205004420) do
     t.string   "small_triangle_1"
     t.string   "small_triangle_2"
     t.string   "square"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "saveds", :force => true do |t|
+    t.integer  "puzzle_id"
+    t.integer  "user_id"
+    t.string   "large_triangle_1"
+    t.string   "large_triangle_2"
+    t.string   "medium_triangle"
+    t.string   "small_triangle_1"
+    t.string   "small_triangle_2"
+    t.string   "square"
+    t.string   "parallelogram"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end

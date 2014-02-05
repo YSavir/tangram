@@ -2,6 +2,8 @@ Tanagram::Application.routes.draw do
 
   root to: "puzzles#index"
 
+  post "puzzles/save" => "puzzles#save"
+
   devise_for :users
 
   resources :puzzles
