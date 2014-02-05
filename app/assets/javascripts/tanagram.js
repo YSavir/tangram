@@ -314,6 +314,14 @@ function Game(pieces, puzzle){
 		next();
 	})
 
+	$("#save").on("click", function(){
+		tanagram.savePuzzle();
+	})
+
+	$("#load_last").on("click", function(){
+		tanagram.loadPuzzle();
+	})
+
 	stage.on("stagemouseup", function(evt) {
 		if (
 			//Large Triangle 1 Check
