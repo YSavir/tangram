@@ -312,6 +312,14 @@ function Game(pieces, puzzle){
 		next();
 	})
 
+	$("#save").on("click", function(){
+		tanagram.savePuzzle();
+	})
+
+	$("#load_last").on("click", function(){
+		tanagram.loadPuzzle();
+	})
+
 	stage.on("stagemouseup", function(evt) {
 		if (
 			//Large Triangle 1 Check
@@ -411,7 +419,10 @@ function get_puzzle(){
 		dataType: "json",
 		type: "get",
 		success: function(data){
-			setPuzzle(puzzle, data);		}
+			setPuzzle(puzzle, data);
+			tanagram.current_puzzle = data;
+			tanagram.attempted_puzzles.push(data);
+		}
 	});
 }
 function next(){
