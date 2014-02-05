@@ -24,8 +24,19 @@ Puzzle.create(
   :large_triangle_1 => 	"x:697, y:243, r:180, color:black",
   :large_triangle_2 => 	"x:570, y:260, r:225, color:black",
   :medium_triangle => 	"x:786, y:273, r:270, color:black",
-  :small_triangle_1 => 	"x:815, y:97 , r:0, color:black",
+  :small_triangle_1 => 	"x:815, y:97,  r:0, color:black",
   :small_triangle_2 => 	"x:498, y:326, r:270, color:black",
   :square => 			"x:875, y:186, r:0, color:black",
   :parallelogram => 	"x:817, y:345, r:135, color:black, flip:false"
+  )
+
+Puzzle.create(
+  :name => "swan",
+  :large_triangle_1 => 	"x:809, y:339, r:180, color:black",
+  :large_triangle_2 => 	"x:731, y:405, r:225, color:black",
+  :medium_triangle => 	"x:647, y:363, r:45, color:black",
+  :small_triangle_1 => 	"x:643, y:130, r:135, color:black",
+  :small_triangle_2 => 	"x:634, y:304, r:90, color:black",
+  :square => 			"x:664, y:245, r:0, color:black",
+  :parallelogram => 	"x:694, y:156, r:0, color:black, flip:false"
   )

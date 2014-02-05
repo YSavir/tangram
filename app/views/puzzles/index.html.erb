@@ -56,9 +56,18 @@ var defaultX, defaultY, scale;
 defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);
+var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);//remember to switch to false when pushing
 get_puzzle();
 var game = new Game(pieces, puzzle);
+
+// var seven_fifty_y = new createjs.Shape();
+// 	seven_fifty_y.graphics.s("black").mt(750, 0).lt(750, 500);
+// var five_hundred_y = new createjs.Shape();
+// 	five_hundred_y.graphics.s("black").mt(500, 0).lt(500, 500);
+// stage.addChild(seven_fifty_y);
+// stage.addChild(five_hundred_y);
+
+ 
 
 createjs.Ticker.addEventListener("tick", tick);
 
