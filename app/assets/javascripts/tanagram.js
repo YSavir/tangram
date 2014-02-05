@@ -218,7 +218,7 @@ Pieces.prototype.get_square = function(){
 	return {x : this.square.x, y : this.square.y, rotation : this.square.rotation };
 }
 
-Pieces.prototype.reset_pieces = function(puzzle){
+Pieces.prototype.reset = function(){
 	this.large_triangle_1.graphics.clear().f("red").mt(0, 4 * scale).lt(4 * scale, 0).lt(8 * scale,4 * scale).lt(0,4 * scale);
 	this.large_triangle_1.x = (4 * scale) + defaultX;
 	this.large_triangle_1.y = (2 * scale) + defaultY;
@@ -304,6 +304,14 @@ function tick(event){
 }
 
 function Game(pieces, puzzle){
+	$("#reset").on("click", function(){
+		pieces.reset();
+	});
+
+	$("#next").on("click", function(){
+		next();
+	})
+
 	stage.on("stagemouseup", function(evt) {
 		if (
 			//Large Triangle 1 Check
@@ -385,9 +393,8 @@ function Game(pieces, puzzle){
 			puzzle.get_medium_triangle().r))
 		)
 		{
-			get_puzzle();
-			pieces.reset_pieces();
-			console.log("Game Over")
+			//User won games
+			console.log("Game Over");	
 		}
 	});
 }
@@ -407,4 +414,8 @@ function get_puzzle(){
 			setPuzzle(puzzle, data);
 		}
 	});
+}
+function next(){
+	get_puzzle();
+	pieces.reset();
 }
