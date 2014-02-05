@@ -414,7 +414,8 @@ function get_puzzle(){
 		type: "get",
 		success: function(data){
 			setPuzzle(puzzle, data);
-			console.log(data);
+			tanagram.current_puzzle = data;
+      tanagram.attempted_puzzles.push(data);
 		}
 	});
 }
