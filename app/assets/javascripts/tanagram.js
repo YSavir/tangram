@@ -356,7 +356,7 @@ function Game(pieces, puzzle){
 }
 
 function check_piece(x1, y1, r1, x2, y2, r2){
-	if(Math.abs(x1 - x2) < 10 && Math.abs(y1 - y2) < 10 && r1 == r2){
+	if(Math.abs(x1 - x2) < 12 && Math.abs(y1 - y2) < 12 && r1 == r2){
 		return true;
 	}
 	return false;
