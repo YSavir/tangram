@@ -3,21 +3,23 @@ var tanagram = {
   attempted_puzzles: [],
 
   savePuzzle: function savePuzzle(){
-    var save = {};
-    save["large_triangle_1"] = pieces.get_large_triangle_1()
-    save["large_triangle_2"] = pieces.get_large_triangle_2()
-    save["medium_triangle"] = pieces.get_medium_triangle()
-    save["small_triangle_1"] = pieces.get_small_triangle_1()
-    save["small_triangle_1"] = pieces.get_small_triangle_1()
-    save["square"] = pieces.get_square()
-    save["parallelogram"] = pieces.get_parallelogram()
-    console.log(save);
+    var params = {
+      save: {}
+    }
+    params.save["large_triangle_1"] = pieces.get_large_triangle_1()
+    params.save["large_triangle_2"] = pieces.get_large_triangle_2()
+    params.save["medium_triangle"] = pieces.get_medium_triangle()
+    params.save["small_triangle_1"] = pieces.get_small_triangle_1()
+    params.save["small_triangle_1"] = pieces.get_small_triangle_1()
+    params.save["square"] = pieces.get_square()
+    params.save["parallelogram"] = pieces.get_parallelogram()
+    console.log(params.save);
 
     $.ajax({
       url: "/puzzles/save",
       dataType: "json",
       type: "post",
-      data: save
+      data: params
     });
   }
 }
