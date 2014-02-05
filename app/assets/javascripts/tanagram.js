@@ -292,6 +292,8 @@ function setPuzzle(puzzle, data){
 		data.puzzle.small_triangle_2.r,
 		data.puzzle.small_triangle_2.color);
 
+	console.log(data);
+
 	puzzle.set_square(
 		data.puzzle.square.x,
 		data.puzzle.square.y,
@@ -393,7 +395,7 @@ function Game(pieces, puzzle){
 			puzzle.get_medium_triangle().r))
 		)
 		{
-			//User won games
+			//User won game
 			console.log("Game Over");	
 		}
 	});
