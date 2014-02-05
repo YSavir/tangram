@@ -78,7 +78,7 @@ var game = new Game(pieces, puzzle);
 createjs.Ticker.addEventListener("tick", tick);
 
 $.ajax({
-	url: "/",
+	url: "/puzzles.json",
 	dataType: "json",
 	type: "get",
 	success: function(data){
