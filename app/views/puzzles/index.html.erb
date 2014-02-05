@@ -59,8 +59,9 @@ defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
 var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);//remember to switch to false when pushing
-get_puzzle();
-// var game = new Game(pieces, puzzle);
+get_puzzle(); 
+var game = new Game(pieces, puzzle);
+
 // var img = new Image();
 // img.src = "assets/google.png"
 // var bmp = new createjs.Bitmap(img);
