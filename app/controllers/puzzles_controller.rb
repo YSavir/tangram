@@ -40,4 +40,12 @@ class PuzzlesController < ApplicationController
     end
   end
 
+  def user_saves
+    saves = current_user.find_saves
+    respond_to do |format|
+      format.json { render json: saves }
+      format.html
+    end
+  end
+
 end

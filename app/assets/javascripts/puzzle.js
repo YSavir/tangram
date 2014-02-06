@@ -43,6 +43,27 @@ var tanagram = {
     });
   },
 
+  findUserSaves: function findUserSaves(){
+    $.ajax({
+      url: "/puzzles/user_saves",
+      dataType: "json",
+      type: "post",
+      success: function(data){
+        bb = data
+        $("#saves_list").empty();
+        for (saved_game in data){
+          var htmlString = "<li><button class='save' id='saveNum" + saved_game + "'>" +
+                                  data[saved_game][0] +
+                                  ", saved on " +
+                                  data[saved_game][1] +
+                                  "</button></li>"
+          var $saveGameElement = $(htmlString)
+          $("#saves_list").append($saveGameElement)
+        }
+      }
+    });
+  },
+
   placePieces: function placePieces(pieceSet, pieceInfo){
     pieceSet["large_triangle_1"]["x"] = pieceInfo.large_triangle_1.x
     pieceSet["large_triangle_1"]["y"] = pieceInfo.large_triangle_1.y
@@ -74,3 +95,11 @@ var tanagram = {
   }
 }
 
+$(function(){
+  $("#load").on("click", tanagram.findUserSaves())
+  $("#saves_list").on("click", "button", function(){
+    var buttonId = $(this).attr("id");
+    var saveId = buttonId.split("m")[1]
+    tanagram.loadPuzzle(saveId);
+  })
+})

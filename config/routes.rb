@@ -5,6 +5,7 @@ Tanagram::Application.routes.draw do
   post "puzzles/" => "puzzles#index"
   post "puzzles/save" => "puzzles#save"
   post "puzzles/load" => "puzzles#load"
+  post "puzzles/user_saves" => "puzzles#user_saves"
 
   devise_for :users
 
