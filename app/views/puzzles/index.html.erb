@@ -9,10 +9,11 @@
 <button class="btn btn-default btn-lg no-selection" data-toggle="modal" data-target="#myModal">Instructions</button>
 <button class="btn btn-default btn-lg no-selection" id="reset">Reset</button>
 <button class="btn btn-default btn-lg no-selection" id="next">Next</button>
-<button class="btn btn-default btn-lg no-selection" id="save">Save</button>
-<button class="btn btn-default btn-lg no-selection" data-toggle="modal" id="load" data-target="#savesModal">Load</button>
-<button class="btn btn-default btn-lg no-selection" id="load_last">Load Last Save</button>
-
+<% if user_signed_in? %>
+	<button class="btn btn-default btn-lg no-selection" id="save">Save</button>
+  <button class="btn btn-default btn-lg no-selection" data-toggle="modal" id="load" data-target="#savesModal">Load</button>
+	<button class="btn btn-default btn-lg no-selection" id="load_last">Load Last Save</button>
+<% end %>
 </div>
 
     <!-- ********** modal popup ********** -->

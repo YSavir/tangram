@@ -1,5 +1,5 @@
 body {
-  padding-top: 35px;
+  padding-top: 70px;
 }
 
 #game{
@@ -29,4 +29,13 @@ a{
 }
 .winner{
   font-size: 7em;
+}
+
+.center-form{
+  margin: 0 auto;
+  width: 300px;
+}
+
+.center-form button{
+  margin-top: 15px;
 }
