@@ -265,105 +265,23 @@ function Game(pieces, puzzle){
 	});
 
 	$("#next").on("click", function(){
-		self.game_over(false);
+	  self.game_over(false);
 		self.get_puzzle();
 		pieces.reset();
-	})
+	});
 
 	$("#save").on("click", function(){
 		self.game_over(false);
 		tanagram.savePuzzle();
-	})
+	});
 
 	$("#load_last").on("click", function(){
-		self.game_over(false);
 		tanagram.loadPuzzle();
-	})
+		self.check_game_over();
+	});
 
-	stage.on("stagemouseup", function(evt) {
-		if (
-			//Large Triangle 1 Check
-			(self.check_piece(pieces.get_large_triangle_1().x, 
-			pieces.get_large_triangle_1().y, 
-			pieces.get_large_triangle_1().r,
-			puzzle.get_large_triangle_1().x,
-			puzzle.get_large_triangle_1().y,
-			puzzle.get_large_triangle_1().r)
-		||
-			self.check_piece(pieces.get_large_triangle_2().x, 
-			pieces.get_large_triangle_2().y, 
-			pieces.get_large_triangle_2().r,
-			puzzle.get_large_triangle_1().x,
-			puzzle.get_large_triangle_1().y,
-			puzzle.get_large_triangle_1().r))
-		&&	//Large Triangle 2 Check
-			(self.check_piece(pieces.get_large_triangle_2().x, 
-			pieces.get_large_triangle_2().y, 
-			pieces.get_large_triangle_2().r,
-			puzzle.get_large_triangle_2().x,
-			puzzle.get_large_triangle_2().y,
-			puzzle.get_large_triangle_2().r)
-		||
-			self.check_piece(pieces.get_large_triangle_1().x, 
-			pieces.get_large_triangle_1().y, 
-			pieces.get_large_triangle_1().r,
-			puzzle.get_large_triangle_2().x,
-			puzzle.get_large_triangle_2().y,
-			puzzle.get_large_triangle_2().r))
-		&&	//Small Triangle 1 Check
-			(self.check_piece(pieces.get_small_triangle_1().x, 
-			pieces.get_small_triangle_1().y, 
-			pieces.get_small_triangle_1().r,
-			puzzle.get_small_triangle_1().x,
-			puzzle.get_small_triangle_1().y,
-			puzzle.get_small_triangle_1().r)
-		||
-			self.check_piece(pieces.get_small_triangle_2().x, 
-			pieces.get_small_triangle_2().y, 
-			pieces.get_small_triangle_2().r,
-			puzzle.get_small_triangle_1().x,
-			puzzle.get_small_triangle_1().y,
-			puzzle.get_small_triangle_1().r))
-		&&	//Small Triangle 2 Check
-			(self.check_piece(pieces.get_small_triangle_2().x, 
-			pieces.get_small_triangle_2().y, 
-			pieces.get_small_triangle_2().r,
-			puzzle.get_small_triangle_2().x,
-			puzzle.get_small_triangle_2().y,
-			puzzle.get_small_triangle_2().r)
-		||
-			self.check_piece(pieces.get_small_triangle_1().x, 
-			pieces.get_small_triangle_1().y, 
-			pieces.get_small_triangle_1().r,
-			puzzle.get_small_triangle_2().x,
-			puzzle.get_small_triangle_2().y,
-			puzzle.get_small_triangle_2().r))
-		&&	//Parallelogram Check
-			(self.check_piece(pieces.get_parallelogram().x, 
-			pieces.get_parallelogram().y, 
-			pieces.get_parallelogram().r,
-			puzzle.get_parallelogram().x,
-			puzzle.get_parallelogram().y,
-			puzzle.get_parallelogram().r))
-		&&	//Square Check
-			(self.check_piece(pieces.get_square().x, 
-			pieces.get_square().y, 
-			pieces.get_square().r,
-			puzzle.get_square().x,
-			puzzle.get_square().y,
-			puzzle.get_square().r))
-		&&	//Medium Triangle Check
-			(self.check_piece(pieces.get_medium_triangle().x, 
-			pieces.get_medium_triangle().y, 
-			pieces.get_medium_triangle().r,
-			puzzle.get_medium_triangle().x,
-			puzzle.get_medium_triangle().y,
-			puzzle.get_medium_triangle().r))
-		)
-		{
-			//User won game
-			self.game_over(true);
-		}
+	stage.on("stagemouseup", function(evt){
+		self.check_game_over();
 	});
 }
 
@@ -412,6 +330,92 @@ Game.prototype.setPuzzle = function(puzzle, data){
 		data.puzzle.square.r,
 		data.puzzle.square.color);
 }
+
+Game.prototype.check_game_over = function() {
+		if (
+			//Large Triangle 1 Check
+			(this.check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r)
+		||
+			this.check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r))
+		&&	//Large Triangle 2 Check
+			(this.check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r)
+		||
+			this.check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r))
+		&&	//Small Triangle 1 Check
+			(this.check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r)
+		||
+			this.check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r))
+		&&	//Small Triangle 2 Check
+			(this.check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r)
+		||
+			this.check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r))
+		&&	//Parallelogram Check
+			(this.check_piece(pieces.get_parallelogram().x, 
+			pieces.get_parallelogram().y, 
+			pieces.get_parallelogram().r,
+			puzzle.get_parallelogram().x,
+			puzzle.get_parallelogram().y,
+			puzzle.get_parallelogram().r))
+		&&	//Square Check
+			(this.check_piece(pieces.get_square().x, 
+			pieces.get_square().y, 
+			pieces.get_square().r,
+			puzzle.get_square().x,
+			puzzle.get_square().y,
+			puzzle.get_square().r))
+		&&	//Medium Triangle Check
+			(this.check_piece(pieces.get_medium_triangle().x, 
+			pieces.get_medium_triangle().y, 
+			pieces.get_medium_triangle().r,
+			puzzle.get_medium_triangle().x,
+			puzzle.get_medium_triangle().y,
+			puzzle.get_medium_triangle().r))
+		)
+		{
+			//User won game
+			this.game_over(true);
+		}
+	};
 
 Game.prototype.check_piece = function (x1, y1, r1, x2, y2, r2){
 	if(Math.abs(x1 - x2) < 12 && Math.abs(y1 - y2) < 12 && r1 == r2){
