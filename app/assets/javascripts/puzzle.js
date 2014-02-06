@@ -109,6 +109,7 @@ $(function(){
     var buttonId = $(this).attr("id");
     var saveId = buttonId.split("m")[1]
     tanagram.loadPuzzle(saveId);
+    game.gameover(false);
   })
   $("#saves_list").on("click", ".deleteButton", function(){
     var buttonId = $(this).attr("id");
