@@ -10,7 +10,7 @@ var tanagram = {
     params.save["large_triangle_2"] = pieces.get_large_triangle_2()
     params.save["medium_triangle"] = pieces.get_medium_triangle()
     params.save["small_triangle_1"] = pieces.get_small_triangle_1()
-    params.save["small_triangle_2"] = pieces.get_small_triangle_1()
+    params.save["small_triangle_2"] = pieces.get_small_triangle_2()
     params.save["square"] = pieces.get_square()
     params.save["parallelogram"] = pieces.get_parallelogram()
     params["puzzle_id"] = tanagram.current_puzzle.puzzle.id
@@ -36,37 +36,41 @@ var tanagram = {
       type: "post",
       data: params,
       success: function(data){
-        console.log(data["puzzle_to_load"])
         tanagram.current_puzzle.puzzle = data["puzzle_model"]
-        pieces.large_triangle_1.x = data["puzzle_to_load"].large_triangle_1.x
-        pieces.large_triangle_1.y = data["puzzle_to_load"].large_triangle_1.y
-        pieces.large_triangle_1.r = data["puzzle_to_load"].large_triangle_1.r
-
-        pieces.large_triangle_2.x = data["puzzle_to_load"].large_triangle_2.x
-        pieces.large_triangle_2.y = data["puzzle_to_load"].large_triangle_2.y
-        pieces.large_triangle_2.r = data["puzzle_to_load"].large_triangle_2.r
-
-        pieces.medium_triangle.x = data["puzzle_to_load"].medium_triangle.x
-        pieces.medium_triangle.y = data["puzzle_to_load"].medium_triangle.y
-        pieces.medium_triangle.r = data["puzzle_to_load"].medium_triangle.r
-
-        pieces.small_triangle_1.x = data["puzzle_to_load"].small_triangle_1.x
-        pieces.small_triangle_1.y = data["puzzle_to_load"].small_triangle_1.y
-        pieces.small_triangle_1.r = data["puzzle_to_load"].small_triangle_1.r
-
-        pieces.small_triangle_2.x = data["puzzle_to_load"].small_triangle_2.x
-        pieces.small_triangle_2.y = data["puzzle_to_load"].small_triangle_2.y
-        pieces.small_triangle_2.r = data["puzzle_to_load"].small_triangle_2.r
-
-        pieces.square.x = data["puzzle_to_load"].square.x
-        pieces.square.y = data["puzzle_to_load"].square.y
-        pieces.square.r = data["puzzle_to_load"].square.r
-
-        pieces.parallelogram.x = data["puzzle_to_load"].parallelogram.x
-        pieces.parallelogram.y = data["puzzle_to_load"].parallelogram.y
-        pieces.parallelogram.r = data["puzzle_to_load"].parallelogram.r
+        tanagram.placePieces(pieces, data["puzzle_to_load"]);
+        tanagram.placePieces(puzzle, tanagram.current_puzzle.puzzle);
       }
     });
+  },
+
+  placePieces: function placePieces(pieceSet, pieceInfo){
+    pieceSet["large_triangle_1"]["x"] = pieceInfo.large_triangle_1.x
+    pieceSet["large_triangle_1"]["y"] = pieceInfo.large_triangle_1.y
+    pieceSet["large_triangle_1"].rotation = pieceInfo.large_triangle_1.r
+
+    pieceSet["large_triangle_2"]["x"] = pieceInfo.large_triangle_2.x
+    pieceSet["large_triangle_2"]["y"] = pieceInfo.large_triangle_2.y
+    pieceSet["large_triangle_2"].rotation = pieceInfo.large_triangle_2.r
+
+    pieceSet["medium_triangle"]["x"] = pieceInfo.medium_triangle.x
+    pieceSet["medium_triangle"]["y"] = pieceInfo.medium_triangle.y
+    pieceSet["medium_triangle"].rotation = pieceInfo.medium_triangle.r
+
+    pieceSet["small_triangle_1"]["x"] = pieceInfo.small_triangle_1.x
+    pieceSet["small_triangle_1"]["y"] = pieceInfo.small_triangle_1.y
+    pieceSet["small_triangle_1"].rotation = pieceInfo.small_triangle_1.r
+
+    pieceSet["small_triangle_2"]["x"] = pieceInfo.small_triangle_2.x
+    pieceSet["small_triangle_2"]["y"] = pieceInfo.small_triangle_2.y
+    pieceSet["small_triangle_2"].rotation = pieceInfo.small_triangle_2.r
+
+    pieceSet["square"]["x"] = pieceInfo.square.x
+    pieceSet["square"]["y"] = pieceInfo.square.y
+    pieceSet["square"].rotation = pieceInfo.square.r
+
+    pieceSet["parallelogram"]["x"] = pieceInfo.parallelogram.x
+    pieceSet["parallelogram"]["y"] = pieceInfo.parallelogram.y
+    pieceSet["parallelogram"].rotation = pieceInfo.parallelogram.r
   }
 }
 

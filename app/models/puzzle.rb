@@ -3,10 +3,12 @@ class Puzzle < ActiveRecord::Base
 
   has_many :saveds
 
-  def to_json(item)
+  def self.coords_to_hash(item)
+    # sample item: "x:809, y:339, r:180, color:black"
     data = {}
     hashes = item.split(", ")
     hashes.each do |hash|
+      # sample hash: "x:809"
       thing = hash.split(":")
       data["#{thing[0]}"] = thing[1]
     end
@@ -17,13 +19,13 @@ class Puzzle < ActiveRecord::Base
   end
 
   def json_puzzle
-    self.large_triangle_1 = self.to_json(large_triangle_1)
-    self.large_triangle_2 = self.to_json(large_triangle_2)
-    self.medium_triangle = self.to_json(medium_triangle)
-    self.small_triangle_1 = self.to_json(small_triangle_1)
-    self.small_triangle_2 = self.to_json(small_triangle_2)
-    self.square = self.to_json(square)
-    self.parallelogram = self.to_json(parallelogram)
+    self.large_triangle_1 = Puzzle.coords_to_hash(large_triangle_1)
+    self.large_triangle_2 = Puzzle.coords_to_hash(large_triangle_2)
+    self.medium_triangle = Puzzle.coords_to_hash(medium_triangle)
+    self.small_triangle_1 = Puzzle.coords_to_hash(small_triangle_1)
+    self.small_triangle_2 = Puzzle.coords_to_hash(small_triangle_2)
+    self.square = Puzzle.coords_to_hash(square)
+    self.parallelogram = Puzzle.coords_to_hash(parallelogram)
   end
 
   def self.find_new_puzzle(past_puzzles = [])
