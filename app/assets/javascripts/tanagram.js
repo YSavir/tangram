@@ -427,7 +427,7 @@ Game.prototype.get_puzzle = function(){
 	}
 
 	tanagram.attempted_puzzles.forEach(function(past_puzzle){
-		params.past_puzzles.push(past_puzzle.id);
+		params.past_puzzles.push(past_puzzle);
 	})
 
 	$.ajax({
@@ -444,7 +444,6 @@ Game.prototype.get_puzzle = function(){
       }
 			self.setPuzzle(puzzle, data);
 			tanagram.current_puzzle = data;
-			tanagram.attempted_puzzles.push(data);
 		}
 	});
 }
