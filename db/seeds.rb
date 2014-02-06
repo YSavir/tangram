@@ -62,3 +62,14 @@ Puzzle.create(
   :square =>      "x:726, y:149, r:45, color:black",
   :parallelogram =>   "x:918, y:397, r:0, color:black, flip:false"
   )
+
+Puzzle.create(
+  :name => "giraffe",
+  :large_triangle_1 =>  "x:750, y:376, r:270, color:black",
+  :large_triangle_2 =>  "x:631, y:378, r:270, color:black",
+  :small_triangle_1 =>  "x:780, y:81, r:270, color:black",
+  :small_triangle_2 =>  "x:721, y:318, r:90, color:black",
+  :medium_triangle =>   "x:840, y:92, r:0, color:black",
+  :square =>      "x:750, y:259, r:0, color:black",
+  :parallelogram =>   "x:780, y:170, r:0, color:black, flip:false"
+  )

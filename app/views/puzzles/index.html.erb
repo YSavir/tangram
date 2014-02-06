@@ -61,7 +61,7 @@ var defaultX, defaultY, scale;
 defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
-var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, true);//remember to switch to false when pushing
+var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);//remember to switch to false when pushing
 var game = new Game(pieces, puzzle);
 
 // var seven_fifty_y = new createjs.Shape();
