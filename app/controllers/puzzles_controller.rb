@@ -20,7 +20,7 @@ class PuzzlesController < ApplicationController
       Saved.save_puzzle(params, current_user.id)
     end
 
-    render :json => ""
+    render :json => "{}"
   end
 
   def load
@@ -36,6 +36,14 @@ class PuzzlesController < ApplicationController
     puzzle_to_load.json_puzzle
     respond_to do |format|
       format.json {render json: { puzzle_to_load: puzzle_to_load, puzzle_model: puzzle_model } }
+      format.html
+    end
+  end
+
+  def user_saves
+    saves = current_user.find_saves
+    respond_to do |format|
+      format.json { render json: saves }
       format.html
     end
   end

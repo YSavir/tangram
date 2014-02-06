@@ -11,4 +11,16 @@ class User < ActiveRecord::Base
   attr_accessible :user_name
 
   has_many :saveds
+
+  def find_saves
+    saves_hash = {}
+    saves = Saved.where(user_id: self.id)
+    saves.each do |save_game|
+      saves_hash["#{save_game.id}"] = []
+      saves_hash["#{save_game.id}"] << save_game.puzzle.name
+      saves_hash["#{save_game.id}"] << save_game.created_at
+      saves_hash["#{save_game.id}"] << save_game
+    end
+    return saves_hash
+  end
 end

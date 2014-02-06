@@ -11,6 +11,7 @@
 <button class="btn btn-default btn-lg no-selection" id="next">Next</button>
 <% if user_signed_in? %>
 	<button class="btn btn-default btn-lg no-selection" id="save">Save</button>
+  <button class="btn btn-default btn-lg no-selection" data-toggle="modal" id="load" data-target="#savesModal">Load</button>
 	<button class="btn btn-default btn-lg no-selection" id="load_last">Load Last Save</button>
 <% end %>
 </div>
@@ -46,6 +47,29 @@
             <p>
               <img src="assets/tanagram.jpg" alt="tanagram" width="560px ">
             </p>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default no-selection" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="savesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+
+          <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Load</h4>
+          </div>
+
+          <div class="modal-body">
+            <ul id="saves_list"></ul>
           </div>
 
           <div class="modal-footer">
