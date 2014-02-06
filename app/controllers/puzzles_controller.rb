@@ -2,6 +2,7 @@ class PuzzlesController < ApplicationController
 
   def index
     puts "============================================="
+    puts params
     puzzle = params[:past_puzzles]
     if params["past_puzzles"] != nil
       puzzle = Puzzle.find_new_puzzle(puzzle)

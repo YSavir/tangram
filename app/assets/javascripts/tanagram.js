@@ -255,7 +255,121 @@ Pieces.prototype.reset = function(){
 	this.square.rotation = 0;
 }
 
-function setPuzzle(puzzle, data){
+function Game(pieces, puzzle){
+	var self = this;
+	this.get_puzzle();
+
+	$("#reset").on("click", function(){
+		$("#overlay").hide();
+		pieces.reset();
+	});
+
+	$("#next").on("click", function(){
+		$("#overlay").hide();
+		self.get_puzzle();
+		pieces.reset();
+	})
+
+	$("#save").on("click", function(){
+		$("#overlay").hide();
+		tanagram.savePuzzle();
+	})
+
+	$("#load_last").on("click", function(){
+		$("#overlay").hide();
+		tanagram.loadPuzzle();
+	})
+
+	stage.on("stagemouseup", function(evt) {
+		if (
+			//Large Triangle 1 Check
+			(self.check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r)
+		||
+			self.check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_1().x,
+			puzzle.get_large_triangle_1().y,
+			puzzle.get_large_triangle_1().r))
+		&&	//Large Triangle 2 Check
+			(self.check_piece(pieces.get_large_triangle_2().x, 
+			pieces.get_large_triangle_2().y, 
+			pieces.get_large_triangle_2().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r)
+		||
+			self.check_piece(pieces.get_large_triangle_1().x, 
+			pieces.get_large_triangle_1().y, 
+			pieces.get_large_triangle_1().r,
+			puzzle.get_large_triangle_2().x,
+			puzzle.get_large_triangle_2().y,
+			puzzle.get_large_triangle_2().r))
+		&&	//Small Triangle 1 Check
+			(self.check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r)
+		||
+			self.check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_1().x,
+			puzzle.get_small_triangle_1().y,
+			puzzle.get_small_triangle_1().r))
+		&&	//Small Triangle 2 Check
+			(self.check_piece(pieces.get_small_triangle_2().x, 
+			pieces.get_small_triangle_2().y, 
+			pieces.get_small_triangle_2().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r)
+		||
+			self.check_piece(pieces.get_small_triangle_1().x, 
+			pieces.get_small_triangle_1().y, 
+			pieces.get_small_triangle_1().r,
+			puzzle.get_small_triangle_2().x,
+			puzzle.get_small_triangle_2().y,
+			puzzle.get_small_triangle_2().r))
+		&&	//Parallelogram Check
+			(self.check_piece(pieces.get_parallelogram().x, 
+			pieces.get_parallelogram().y, 
+			pieces.get_parallelogram().r,
+			puzzle.get_parallelogram().x,
+			puzzle.get_parallelogram().y,
+			puzzle.get_parallelogram().r))
+		&&	//Square Check
+			(self.check_piece(pieces.get_square().x, 
+			pieces.get_square().y, 
+			pieces.get_square().r,
+			puzzle.get_square().x,
+			puzzle.get_square().y,
+			puzzle.get_square().r))
+		&&	//Medium Triangle Check
+			(self.check_piece(pieces.get_medium_triangle().x, 
+			pieces.get_medium_triangle().y, 
+			pieces.get_medium_triangle().r,
+			puzzle.get_medium_triangle().x,
+			puzzle.get_medium_triangle().y,
+			puzzle.get_medium_triangle().r))
+		)
+		{
+			//User won game
+			$("#overlay").show();
+			console.log("Game Over");	
+		}
+	});
+}
+
+Game.prototype.setPuzzle = function(puzzle, data){
+	$("#overlay").hide();
 	puzzle.set_large_triangle_1(
 		data.puzzle.large_triangle_1.x,
 		data.puzzle.large_triangle_1.y,
@@ -292,8 +406,6 @@ function setPuzzle(puzzle, data){
 		data.puzzle.small_triangle_2.r,
 		data.puzzle.small_triangle_2.color);
 
-	console.log(data);
-
 	puzzle.set_square(
 		data.puzzle.square.x,
 		data.puzzle.square.y,
@@ -301,127 +413,21 @@ function setPuzzle(puzzle, data){
 		data.puzzle.square.color);
 }
 
-function tick(event){
-	stage.update();
-}
-
-function Game(pieces, puzzle){
-	$("#reset").on("click", function(){
-		pieces.reset();
-	});
-
-	$("#next").on("click", function(){
-		next();
-	})
-
-	$("#save").on("click", function(){
-		tanagram.savePuzzle();
-	})
-
-	$("#load_last").on("click", function(){
-		tanagram.loadPuzzle();
-	})
-
-	stage.on("stagemouseup", function(evt) {
-		if (
-			//Large Triangle 1 Check
-			(check_piece(pieces.get_large_triangle_1().x, 
-			pieces.get_large_triangle_1().y, 
-			pieces.get_large_triangle_1().r,
-			puzzle.get_large_triangle_1().x,
-			puzzle.get_large_triangle_1().y,
-			puzzle.get_large_triangle_1().r)
-		||
-			check_piece(pieces.get_large_triangle_2().x, 
-			pieces.get_large_triangle_2().y, 
-			pieces.get_large_triangle_2().r,
-			puzzle.get_large_triangle_1().x,
-			puzzle.get_large_triangle_1().y,
-			puzzle.get_large_triangle_1().r))
-		&&	//Large Triangle 2 Check
-			(check_piece(pieces.get_large_triangle_2().x, 
-			pieces.get_large_triangle_2().y, 
-			pieces.get_large_triangle_2().r,
-			puzzle.get_large_triangle_2().x,
-			puzzle.get_large_triangle_2().y,
-			puzzle.get_large_triangle_2().r)
-		||
-			check_piece(pieces.get_large_triangle_1().x, 
-			pieces.get_large_triangle_1().y, 
-			pieces.get_large_triangle_1().r,
-			puzzle.get_large_triangle_2().x,
-			puzzle.get_large_triangle_2().y,
-			puzzle.get_large_triangle_2().r))
-		&&	//Small Triangle 1 Check
-			(check_piece(pieces.get_small_triangle_1().x, 
-			pieces.get_small_triangle_1().y, 
-			pieces.get_small_triangle_1().r,
-			puzzle.get_small_triangle_1().x,
-			puzzle.get_small_triangle_1().y,
-			puzzle.get_small_triangle_1().r)
-		||
-			check_piece(pieces.get_small_triangle_2().x, 
-			pieces.get_small_triangle_2().y, 
-			pieces.get_small_triangle_2().r,
-			puzzle.get_small_triangle_1().x,
-			puzzle.get_small_triangle_1().y,
-			puzzle.get_small_triangle_1().r))
-		&&	//Small Triangle 2 Check
-			(check_piece(pieces.get_small_triangle_2().x, 
-			pieces.get_small_triangle_2().y, 
-			pieces.get_small_triangle_2().r,
-			puzzle.get_small_triangle_2().x,
-			puzzle.get_small_triangle_2().y,
-			puzzle.get_small_triangle_2().r)
-		||
-			check_piece(pieces.get_small_triangle_1().x, 
-			pieces.get_small_triangle_1().y, 
-			pieces.get_small_triangle_1().r,
-			puzzle.get_small_triangle_2().x,
-			puzzle.get_small_triangle_2().y,
-			puzzle.get_small_triangle_2().r))
-		&&	//Parallelogram Check
-			(check_piece(pieces.get_parallelogram().x, 
-			pieces.get_parallelogram().y, 
-			pieces.get_parallelogram().r,
-			puzzle.get_parallelogram().x,
-			puzzle.get_parallelogram().y,
-			puzzle.get_parallelogram().r))
-		&&	//Square Check
-			(check_piece(pieces.get_square().x, 
-			pieces.get_square().y, 
-			pieces.get_square().r,
-			puzzle.get_square().x,
-			puzzle.get_square().y,
-			puzzle.get_square().r))
-		&&	//Medium Triangle Check
-			(check_piece(pieces.get_medium_triangle().x, 
-			pieces.get_medium_triangle().y, 
-			pieces.get_medium_triangle().r,
-			puzzle.get_medium_triangle().x,
-			puzzle.get_medium_triangle().y,
-			puzzle.get_medium_triangle().r))
-		)
-		{
-			//User won game
-			console.log("Game Over");	
-		}
-	});
-}
-
-function check_piece(x1, y1, r1, x2, y2, r2){
+Game.prototype.check_piece = function (x1, y1, r1, x2, y2, r2){
 	if(Math.abs(x1 - x2) < 12 && Math.abs(y1 - y2) < 12 && r1 == r2){
 		return true;
 	}
 	return false;
 }
-function get_puzzle(){
+
+Game.prototype.get_puzzle = function(){
+	var self = this;
 	var params = {
 		past_puzzles: []
 	}
 
 	tanagram.attempted_puzzles.forEach(function(past_puzzle){
-		params.past_puzzles.push(past_puzzle);
+		params.past_puzzles.push(past_puzzle.id);
 	})
 
 	$.ajax({
@@ -430,16 +436,19 @@ function get_puzzle(){
 		type: "post",
 		data: params,
 		success: function(data){
-			console.log(data);
-			setPuzzle(puzzle, data);
+			console.log(data)
+			self.setPuzzle(puzzle, data);
 			tanagram.current_puzzle = data;
       if (tanagram.attempted_puzzles.indexOf(data.puzzle.id) == -1) {
       	tanagram.attempted_puzzles.push(data.puzzle.id);
       }
+			self.setPuzzle(puzzle, data);
+			tanagram.current_puzzle = data;
+			tanagram.attempted_puzzles.push(data);
 		}
 	});
 }
-function next(){
-	get_puzzle();
-	pieces.reset();
+
+function tick(event){
+	stage.update();
 }

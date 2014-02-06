@@ -1,5 +1,7 @@
 <div id="game" class="game-container">
   <canvas id="canvas" width="1000" height="500"></canvas>
+  <!-- <div id="overlay"><img src="/assets/winner.jpg"></div> -->
+  <div id="overlay"><span class="winner no-selection">WINNER!</span></div>
 </div>
 
 <div class="game-container no-selection">
@@ -59,7 +61,6 @@ defaultX = defaultY = 130;scale = 30;
 var stage = new createjs.Stage("canvas");
 var pieces = new Pieces(stage, scale, defaultX, defaultY, true);
 var puzzle = new Pieces(stage, scale, 500 + defaultX , defaultY, false);//remember to switch to false when pushing
-get_puzzle();
 var game = new Game(pieces, puzzle);
 
 // var seven_fifty_y = new createjs.Shape();
@@ -68,9 +69,7 @@ var game = new Game(pieces, puzzle);
 // 	five_hundred_y.graphics.s("black").mt(500, 0).lt(500, 500);
 // stage.addChild(seven_fifty_y);
 // stage.addChild(five_hundred_y);
-
  
-
 createjs.Ticker.addEventListener("tick", tick);
 
 </script>
