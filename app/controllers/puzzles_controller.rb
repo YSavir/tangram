@@ -1,8 +1,6 @@
 class PuzzlesController < ApplicationController
 
   def index
-    puts "============================================="
-    puts params
     puzzle = params[:past_puzzles]
     if params["past_puzzles"] != nil
       puzzle = Puzzle.find_new_puzzle(puzzle)
@@ -33,7 +31,8 @@ class PuzzlesController < ApplicationController
       users_saved_games = Saved.where(user_id: current_user.id)
       puzzle_to_load = users_saved_games.pop
     end
-    puzzle_model  = puzzle_to_load.puzzle
+    puzzle_model = puzzle_to_load.puzzle
+    puzzle_model.json_puzzle
     puzzle_to_load.json_puzzle
     respond_to do |format|
       format.json {render json: { puzzle_to_load: puzzle_to_load, puzzle_model: puzzle_model } }

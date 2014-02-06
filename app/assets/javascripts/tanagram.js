@@ -436,7 +436,6 @@ Game.prototype.get_puzzle = function(){
 		type: "post",
 		data: params,
 		success: function(data){
-			console.log(data)
 			self.setPuzzle(puzzle, data);
 			tanagram.current_puzzle = data;
       if (tanagram.attempted_puzzles.indexOf(data.puzzle.id) == -1) {
