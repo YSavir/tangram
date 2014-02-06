@@ -40,3 +40,25 @@ Puzzle.create(
   :square => 			"x:664, y:245, r:0, color:black",
   :parallelogram => 	"x:694, y:156, r:0, color:black, flip:false"
   )
+
+Puzzle.create(
+  :name => "duck",
+  :large_triangle_1 =>  "x:632, y:315, r:180, color:black",
+  :large_triangle_2 =>  "x:751, y:315, r:0, color:black",
+  :small_triangle_1 =>  "x:909, y:252, r:45, color:black",
+  :small_triangle_2 =>  "x:770, y:436, r:225, color:black",
+  :medium_triangle =>   "x:846, y:105, r:135, color:black",
+  :square =>      "x:870, y:315, r:0, color:black",
+  :parallelogram =>   "x:846, y:189, r:135, color:black, flip:false"
+  )
+
+Puzzle.create(
+  :name => "horse",
+  :large_triangle_1 =>  "x:727, y:233, r:45, color:black",
+  :large_triangle_2 =>  "x:828, y:308, r:90, color:black",
+  :small_triangle_1 =>  "x:600, y:220, r:0, color:black",
+  :small_triangle_2 =>  "x:748, y:423, r:135, color:black",
+  :medium_triangle =>   "x:684, y:65, r:135, color:black",
+  :square =>      "x:726, y:149, r:45, color:black",
+  :parallelogram =>   "x:918, y:397, r:0, color:black, flip:false"
+  )
