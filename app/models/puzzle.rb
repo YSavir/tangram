@@ -25,4 +25,22 @@ class Puzzle < ActiveRecord::Base
     self.square = self.to_json(square)
     self.parallelogram = self.to_json(parallelogram)
   end
+
+  def self.find_new_puzzle(past_puzzles = [])
+    if past_puzzles.empty?
+      puzzle = Puzzle.all.sample
+    elsif 
+      puzzle_ids = []
+      Puzzle.all.each do |puzz|
+        puzzle_ids << puzz.id.to_s
+      end
+      valid_puzzles = puzzle_ids - past_puzzles
+      puzzles = Puzzle.where(id: valid_puzzles)
+      if puzzles.empty?
+        puzzle = Puzzle.all.sample
+      else
+        puzzle = puzzles.sample
+      end
+    end
+  end
 end

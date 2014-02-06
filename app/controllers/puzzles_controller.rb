@@ -1,11 +1,16 @@
 class PuzzlesController < ApplicationController
 
   def index
-    puzzles = Puzzle.all
-    puzzle = puzzles.sample
+    puts "============================================="
+    puzzle = params[:past_puzzles]
+    if params["past_puzzles"] != nil
+      puzzle = Puzzle.find_new_puzzle(puzzle)
+    else
+      puzzle = Puzzle.find_new_puzzle()
+    end
     puzzle.json_puzzle
     respond_to do |format|
-      format.json { render json: {puzzle: puzzle} }
+      format.json { render json: { puzzle: puzzle } }
       format.html
     end
   end

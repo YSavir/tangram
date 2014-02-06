@@ -416,14 +416,26 @@ function check_piece(x1, y1, r1, x2, y2, r2){
 	return false;
 }
 function get_puzzle(){
+	var params = {
+		past_puzzles: []
+	}
+
+	tanagram.attempted_puzzles.forEach(function(past_puzzle){
+		params.past_puzzles.push(past_puzzle);
+	})
+
 	$.ajax({
 		url: "/puzzles.json",
 		dataType: "json",
-		type: "get",
+		type: "post",
+		data: params,
 		success: function(data){
+			console.log(data);
 			setPuzzle(puzzle, data);
 			tanagram.current_puzzle = data;
-      tanagram.attempted_puzzles.push(data);
+      if (tanagram.attempted_puzzles.indexOf(data.puzzle.id) == -1) {
+      	tanagram.attempted_puzzles.push(data.puzzle.id);
+      }
 		}
 	});
 }
