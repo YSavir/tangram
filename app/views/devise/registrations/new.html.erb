@@ -1,21 +1,11 @@
-<h2>Sign up</h2>
+<form class="center-form" role="form" action="/users" method="post">
+  <h2>Sign up</h2>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="user[remember_me]" value="0">
+  <input type="text" class="form-control" placeholder="User Name" required="true" name="user[user_name]">
+  <input type="email" class="form-control" placeholder="Email" required="true" name="user[email]">
+  <input type="password" class="form-control" placeholder="Password" required="true" name="user[password]">
+  <input type="password" class="form-control" placeholder="Password Confirmation" required="true" name="user[password_confirmation]">
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :user_name %><br />
-  <%= f.text_field :user_name %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+</form>

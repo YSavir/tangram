@@ -10,15 +10,40 @@
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="navbar-header">
 		<div class="container">
-			<a class="navbar-brand no-selection" href="#">Tangram</a>
-		</div>
+			<a class="navbar-brand no-selection" href="/">Tangram</a>
+		
+    <% if user_signed_in? %>
+        <form class="navbar-form navbar-right" role="form" action="/users/sign_out" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn-default">Sign out</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <a href="/users/edit<%= %>" class="no-selection"><li><%= current_user.user_name %></a></li>
+        </ul>
+      <% else %>
+        <form class="navbar-form navbar-right" role="form" action="/users/sign_up" method="post">
+          <input type="hidden" name="_method" value="get">
+          <button type="submit" class="btn btn-default no-selection">Sign up</button>
+        </form>
+        <form class="navbar-form navbar-right" role="form" action="/users/sign_in" method="get">
+          <button type="submit" class="btn btn-default no-selection">Sign in</button>
+        </form>
+      <% end %>
+      </div>
 	</div>
 </div>
-<div class="jsAlerts">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+<div class="game-container">
+  <% if notice %>
+    <div class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="  true">&times;</button><%= notice %>
+    </div>
+  <% end %>
+  <% if alert %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="  true">&times;</button><%= alert %>
+    </div>
+  <% end %>
 </div>
-
 <%= yield %>
 
 </body>
