@@ -2,6 +2,7 @@ Tanagram::Application.routes.draw do
 
   root to: "puzzles#index"
 
+  post "puzzles/" => "puzzles#index"
   post "puzzles/save" => "puzzles#save"
   post "puzzles/load" => "puzzles#load"
 

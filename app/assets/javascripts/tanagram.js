@@ -422,14 +422,28 @@ Game.prototype.check_piece = function (x1, y1, r1, x2, y2, r2){
 
 Game.prototype.get_puzzle = function(){
 	var self = this;
+	var params = {
+		past_puzzles: []
+	}
+
+	tanagram.attempted_puzzles.forEach(function(past_puzzle){
+		params.past_puzzles.push(past_puzzle);
+	})
+
 	$.ajax({
 		url: "/puzzles.json",
 		dataType: "json",
-		type: "get",
+		type: "post",
+		data: params,
 		success: function(data){
+			console.log(data)
 			self.setPuzzle(puzzle, data);
 			tanagram.current_puzzle = data;
-			tanagram.attempted_puzzles.push(data);
+      if (tanagram.attempted_puzzles.indexOf(data.puzzle.id) == -1) {
+      	tanagram.attempted_puzzles.push(data.puzzle.id);
+      }
+			self.setPuzzle(puzzle, data);
+			tanagram.current_puzzle = data;
 		}
 	});
 }

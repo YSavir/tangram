@@ -4,14 +4,6 @@ class Saved < ActiveRecord::Base
   belongs_to :user
   belongs_to :puzzle
 
-  def self.check_user
-    if current_user
-      "yeah"
-    else
-      "NOoooo"
-    end
-  end
-
   def self.save_puzzle(parameters, user_id)
     puzzle_to_save = {}
     parameters[:save].each do |piece, piece_info|
