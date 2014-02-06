@@ -6,6 +6,7 @@ body {
   background: #eeeeee;
   border-radius: 10px;
   margin-bottom:15px;
+  position: relative;
 }
 .game-container{
   width: 1000px;
@@ -19,4 +20,13 @@ a{
   -moz-user-select: none; /* mozilla browsers */
   -khtml-user-select: none; /* webkit (konqueror) browsers */
   -ms-user-select: none; /* IE10+ */
+}
+#overlay{
+  position: absolute;
+  top:180px;
+  left:50px;
+  display:none;
+}
+.winner{
+  font-size: 7em;
 }
