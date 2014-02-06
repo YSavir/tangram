@@ -14,13 +14,15 @@ var tanagram = {
     params.save["square"] = pieces.get_square()
     params.save["parallelogram"] = pieces.get_parallelogram()
     params["puzzle_id"] = tanagram.current_puzzle.puzzle.id
-    console.log(params.save);
 
     $.ajax({
       url: "/puzzles/save",
       dataType: "json",
       type: "post",
-      data: params
+      data: params,
+      success: function(){
+        tanagram.findUserSaves();
+      }
     });
   },
 
@@ -49,19 +51,25 @@ var tanagram = {
       dataType: "json",
       type: "post",
       success: function(data){
-        bb = data
         $("#saves_list").empty();
         for (saved_game in data){
-          var htmlString = "<li><button class='save' id='saveNum" + saved_game + "'>" +
-                                  data[saved_game][0] +
-                                  ", saved on " +
-                                  data[saved_game][1] +
-                                  "</button></li>"
+          var htmlString = "<li>" + data[saved_game][0] + ", saved on " + data[saved_game][1] +
+                              " <button class='loadButton' id='saveNum" + saved_game + "'>Load</button>" +
+                              " <button class='deleteButton' id='deleteNum" + saved_game + "'>Delete</button>" +
+                           "</li>";
           var $saveGameElement = $(htmlString)
           $("#saves_list").append($saveGameElement)
         }
       }
     });
+  },
+
+  deleteSave: function deleteSave(saveToDelete){
+    $.ajax({
+      url: "/saveds/" + saveToDelete,
+      type: "json",
+      type: "delete"
+    })
   },
 
   placePieces: function placePieces(pieceSet, pieceInfo){
@@ -97,9 +105,15 @@ var tanagram = {
 
 $(function(){
   $("#load").on("click", tanagram.findUserSaves())
-  $("#saves_list").on("click", "button", function(){
+  $("#saves_list").on("click", ".loadButton", function(){
     var buttonId = $(this).attr("id");
     var saveId = buttonId.split("m")[1]
     tanagram.loadPuzzle(saveId);
+  })
+  $("#saves_list").on("click", ".deleteButton", function(){
+    var buttonId = $(this).attr("id");
+    var saveId = buttonId.split("m")[1]
+    tanagram.deleteSave(saveId);
+    tanagram.findUserSaves();
   })
 })
