@@ -39,8 +39,8 @@ var tanagram = {
       data: params,
       success: function(data){
         tanagram.current_puzzle.puzzle = data["puzzle_model"]
-        tanagram.placePieces(pieces, data["puzzle_to_load"]);
         tanagram.placePieces(puzzle, tanagram.current_puzzle.puzzle);
+        tanagram.placePieces(pieces, data["puzzle_to_load"]);
       }
     });
   },
@@ -109,7 +109,7 @@ $(function(){
     var buttonId = $(this).attr("id");
     var saveId = buttonId.split("m")[1]
     tanagram.loadPuzzle(saveId);
-    game.gameover(false);
+    game.game_over(false);
   })
   $("#saves_list").on("click", ".deleteButton", function(){
     var buttonId = $(this).attr("id");
