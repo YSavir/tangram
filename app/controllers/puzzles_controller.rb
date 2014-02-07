@@ -41,7 +41,11 @@ class PuzzlesController < ApplicationController
   end
 
   def user_saves
-    saves = current_user.find_saves
+    if current_user
+      saves = current_user.find_saves
+    else
+      saves = "{}"
+    end
     respond_to do |format|
       format.json { render json: saves }
       format.html
