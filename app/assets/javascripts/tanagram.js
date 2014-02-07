@@ -278,11 +278,6 @@ function Game(pieces, puzzle){
 		tanagram.savePuzzle();
 	});
 
-	$("#load_last").on("click", function(){
-		tanagram.loadPuzzle();
-		self.check_game_over();
-	});
-
 	stage.on("stagemouseup", function(evt){
 		self.check_game_over();
 	});

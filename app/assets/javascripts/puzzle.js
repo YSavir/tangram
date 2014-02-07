@@ -41,6 +41,7 @@ var tanagram = {
         tanagram.current_puzzle.puzzle = data["puzzle_model"]
         tanagram.placePieces(puzzle, tanagram.current_puzzle.puzzle);
         tanagram.placePieces(pieces, data["puzzle_to_load"]);
+        game.game_over(false);
       }
     });
   },
@@ -109,7 +110,7 @@ $(function(){
     var buttonId = $(this).attr("id");
     var saveId = buttonId.split("m")[1]
     tanagram.loadPuzzle(saveId);
-    game.game_over(false);
+    pieces.bring_to_front();
   })
   $("#saves_list").on("click", ".deleteButton", function(){
     var buttonId = $(this).attr("id");
